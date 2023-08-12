@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,11 +74,34 @@ public class MainActivity extends AppCompatActivity {
     *Intent Implicit
     * */
     public void dialNumber(View view) {
+        String phoneNumber = "tel:08123456789";
+        Intent dialNumberintent = new Intent(Intent.ACTION_DIAL, Uri.parse(phoneNumber));
+        if (dialNumberintent.resolveActivity(getPackageManager()) != null){
+            startActivity(dialNumberintent);
+        }else {
+            Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void bukaBrowser(View view) {
+        String url = "https://www.codepolitan.com";
+        Intent openWebIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+        if (openWebIntent.resolveActivity(getPackageManager()) != null){
+            startActivity(openWebIntent);
+        }else {
+            Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void bukaMaps(View view) {
+        String location = "Codepolitan";
+        Intent openMapsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q"+location));
+
+        if (openMapsIntent.resolveActivity(getPackageManager()) != null){
+            startActivity(openMapsIntent);
+        }else {
+            Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show();
+        }
     }
 }
