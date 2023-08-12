@@ -37,6 +37,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pindahActivityDenganObject(View view) {
+        //Parcelable = ini berasal dari android
+        //Serializable = ini berasal dari java
+        //mana yang lebih cepat dalam proses pengiriman? = Parceable(Lebih Cepat)
+        //Kita akan menggunakan Serializable
+        User user = new User();
+        user.setName("Muhyi");
+        user.setEmail("muhyi@gmail.com");
+        user.setAge(23);
+        user.setStatus(true);
+
+        Intent pindahActivityDenganObjectIntent = new Intent(MainActivity.this, PindahDenganObjectActivity.class);
+        pindahActivityDenganObjectIntent.putExtra(PindahDenganObjectActivity.KEY_USER, user);
+        startActivity(pindahActivityDenganObjectIntent);
     }
 
     public void pindahActivityResult(View view) {
