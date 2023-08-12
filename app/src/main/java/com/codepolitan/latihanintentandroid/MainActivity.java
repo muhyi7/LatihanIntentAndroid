@@ -1,7 +1,10 @@
 package com.codepolitan.latihanintentandroid;
 
+import androidx.activity.result.ActivityResult;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +21,18 @@ public class MainActivity extends AppCompatActivity {
 
         tvKota = findViewById(R.id.tv_kota);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100){
+            if (resultCode == Activity.RESULT_OK){
+                String result = data.getStringExtra(PindahDenganResultActivity.KEY_RESULT);
+                tvKota.setText(result);
+            }
+        }
+    }
+
     /*
     * Intent Explicit
     * */
@@ -49,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pindahActivityResult(View view) {
+        Intent pindahActivityDenganResultIntent = new Intent(MainActivity.this, PindahDenganResultActivity.class);
+        startActivityForResult(pindahActivityDenganResultIntent,100);
     }
 
     /*

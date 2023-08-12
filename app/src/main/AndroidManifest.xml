@@ -13,6 +13,14 @@
         android:theme="@style/Theme.LatihanIntentAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".PindahDenganResultActivity"
+            android:exported="false"
+            android:label="@string/title_activity_pindah_dengan_result"
+            android:theme="@style/Theme.LatihanIntentAndroid" />
+        <activity
+            android:name=".PindahActivityDenganResult"
+            android:exported="false" />
+        <activity
             android:name=".PindahDenganObjectActivity"
             android:exported="false" />
         <activity
