@@ -41,11 +41,7 @@ public class MainActivity extends AppCompatActivity {
         //Serializable = ini berasal dari java
         //mana yang lebih cepat dalam proses pengiriman? = Parceable(Lebih Cepat)
         //Kita akan menggunakan Serializable
-        User user = new User();
-        user.setName("Muhyi");
-        user.setEmail("muhyi@gmail.com");
-        user.setAge(23);
-        user.setStatus(true);
+        User user = new User("Muhyi", "muhyi@gmail.com", 23, true);
 
         Intent pindahActivityDenganObjectIntent = new Intent(MainActivity.this, PindahDenganObjectActivity.class);
         pindahActivityDenganObjectIntent.putExtra(PindahDenganObjectActivity.KEY_USER, user);
