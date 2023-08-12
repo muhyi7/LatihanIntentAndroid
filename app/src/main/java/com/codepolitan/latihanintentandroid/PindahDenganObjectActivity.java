@@ -29,7 +29,7 @@ public class PindahDenganObjectActivity extends AppCompatActivity {
 
     private void getDataIntent() {
         if (getIntent() != null){
-            User user = (User) getIntent().getSerializableExtra(KEY_USER);
+            User user = getIntent().getParcelableExtra(KEY_USER);
             String age = user.getAge() + " Tahun";
             String status;
             if (user.isStatus()){

@@ -1,8 +1,13 @@
 package com.codepolitan.latihanintentandroid;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements Parcelable {
     private String name;
     private String email;
     private int age;
@@ -17,6 +22,25 @@ public class User implements Serializable {
 
     public User() {
     }
+
+    protected User(Parcel in) {
+        name = in.readString();
+        email = in.readString();
+        age = in.readInt();
+        status = in.readByte() != 0;
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -48,5 +72,18 @@ public class User implements Serializable {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(email);
+        dest.writeInt(age);
+        dest.writeByte((byte) (status ? 1 : 0));
     }
 }
